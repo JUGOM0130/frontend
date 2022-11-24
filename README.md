@@ -6,6 +6,7 @@ yarn install
 ```
 
 ### Compiles and hot-reloads for development
+サーバー起動コマンド
 ```
 yarn serve
 ```
