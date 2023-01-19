@@ -8,7 +8,8 @@
         </div>
         <nav>
           <router-link to="/">root</router-link> |
-          <router-link to="/e_bom">E-BOM</router-link>
+          <router-link to="/e_bom">E-BOM</router-link> |
+          <router-link to="/code_list">製品コード一覧</router-link>
         </nav>
       </div>
       <hr />
