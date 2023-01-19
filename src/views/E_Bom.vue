@@ -4,7 +4,7 @@
     <form>
       <div class="mb-3">
         <label for="shain_cd" class="form-label">コード</label>
-        <input type="text" class="form-control" id="shain_cd" />
+        <input type="text" class="form-control" id="shain_cd" v-model="cd" />
       </div>
       <div class="mb-3">
         <label for="shain_cd" class="form-label">名称</label>
@@ -62,3 +62,26 @@
     </form>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      cd: "",
+      data: {
+        ctid: "",
+        ctkind: "",
+        cthead: "",
+        ctenumber: "",
+        ctnumber: "",
+        ctfoot: "",
+        format: "",
+        ctdata: "",
+      },
+    };
+  },
+  mounted: function () {
+    this.data = JSON.parse(this.$route.query.data);
+    console.log(this.$route.query.data);
+  },
+};
+</script>

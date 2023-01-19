@@ -66,6 +66,9 @@
           <td>{{ data.ctnumber }}</td>
           <td>{{ data.ctfoot }}</td>
           <td>{{ data.format }}</td>
+          <td v-on:click="moveNextScreen(data)">
+            {{ data.ctdata }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -86,6 +89,7 @@ export default {
         "番号",
         "フッダ",
         "フォーマット",
+        "内容登録",
       ],
       datas: [
         {
@@ -96,6 +100,7 @@ export default {
           ctnumber: "",
           ctfoot: "",
           format: "",
+          ctdata: "",
         },
       ],
     };
@@ -106,7 +111,6 @@ export default {
       axios
         .get(TO)
         .then((req) => {
-          console.log(req);
           const list = req.data;
           this.datas = [];
           for (let i = 0; i < list.length; i++) {
@@ -118,6 +122,7 @@ export default {
               ctnumber: "",
               ctfoot: "",
               format: "",
+              ctdata: "",
             });
             this.datas[i].ctid = list[i].ctid;
             this.datas[i].ctkind = list[i].ctkind;
@@ -125,6 +130,7 @@ export default {
             this.datas[i].ctenumber = list[i].ctenumber;
             this.datas[i].ctnumber = list[i].ctnumber;
             this.datas[i].ctfoot = list[i].ctfoot;
+            this.datas[i].ctdata = "link";
             if (this.ctkind == 1 || this.ctkind == 3) {
               this.datas[i].format =
                 list[i].cthead +
@@ -145,6 +151,18 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+    },
+    moveNextScreen: function (data) {
+      console.log(JSON.stringify(data));
+
+      this.$router.push({
+        path: "/e_bom",
+        query: {
+          data: JSON.stringify(data),
+        },
+      });
+
+      //console.log(id + "" + format);
     },
   },
   watch: {
