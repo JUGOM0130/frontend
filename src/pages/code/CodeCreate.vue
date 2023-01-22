@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <v-alert :value="isError" color="red">aaa</v-alert>
     <h1>登録</h1>
     <div class="form-check">
       <input
@@ -9,7 +10,6 @@
         id="flexRadioDefault1"
         value="1"
         v-model="ctkind"
-        checked
       />
       <label class="form-check-label" for="flexRadioDefault1">
         XXX-AxxxxZ000
@@ -95,14 +95,12 @@
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-primary" @click="regist">
-      Submit
-    </button>
+    <button type="button" class="btn btn-primary" @click="regist">登録</button>
   </div>
 </template>
 <script>
 import axios from "axios";
-import constant from "../const";
+import constant from "../../const";
 
 export default {
   data: function () {
@@ -114,28 +112,40 @@ export default {
       ctfoot: "",
       ctenumber_class: "form-control myset-haba-ctenumber",
       readonly: false,
+      isError: false,
+      errorMessage: "",
     };
   },
   methods: {
     regist: function () {
-      const TO = constant.BACK_END_IP + "/code_taikei/regist";
-      const json = {
-        ctkind: this.ctkind,
-        cthead: this.cthead,
-        ctenumber: this.ctenumber,
-        ctnumber: this.ctnumber,
-        ctfoot: this.ctfoot,
-      };
-      axios
-        .post(TO, json)
-        .then((res) => {
-          console.log(res);
-          this.getNewNo();
-        })
-        .catch((err) => {
-          console.log("ERR_CATCH");
-          console.log(err);
-        });
+      if (this.ctnumber != "") {
+        const TO = constant.BACK_END_IP + "/code_taikei/regist";
+        const json = {
+          ctkind: this.ctkind,
+          cthead: this.cthead,
+          ctenumber: this.ctenumber,
+          ctnumber: this.ctnumber,
+          ctfoot: this.ctfoot,
+        };
+        axios
+          .post(TO, json)
+          .then((res) => {
+            console.log(res);
+            this.getNewNo();
+          })
+          .catch((err) => {
+            console.log("ERR_CATCH");
+            console.log(err);
+          });
+      } else {
+        this.isError = true;
+        this.errorMessage = "ERROR：番号が取得できていません確認してください";
+
+        window.setTimeout(() => {
+          this.isError = false;
+          this.errorMessage = "";
+        }, 3000);
+      }
     },
     getNewNo: function () {
       const TO = constant.BACK_END_IP + "/code_taikei/get_new_no";

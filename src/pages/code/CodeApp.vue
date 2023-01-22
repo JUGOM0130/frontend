@@ -1,3 +1,4 @@
+
 <template>
   <v-app>
     <v-main>
@@ -7,15 +8,17 @@
             <div>
               <a href="/">
                 <v-img
-                  lazy-src="./assets/avail_logo.png"
+                  lazy-src="../../assets/avail_logo.png"
                   max-height="100"
                   max-width="200"
-                  src="./assets/avail_logo.png"
+                  src="../../assets/avail_logo.png"
                 ></v-img>
               </a>
             </div>
             <nav>
-              <router-link to="/">Top</router-link> | <a href="/code">PDM</a> |
+              <router-link to="/">コード系メニューTop</router-link> |
+              <router-link to="/code_create">コード採番</router-link> |
+              <router-link to="/code_list">コード一覧</router-link>
             </nav>
           </div>
           <hr />
@@ -26,6 +29,7 @@
     </v-main>
   </v-app>
 </template>
+
 
 
 <style scoped>
@@ -39,13 +43,3 @@
   margin-top: 10px;
 }
 </style>
-
-<script>
-export default {
-  name: "App",
-
-  data: () => ({
-    //
-  }),
-};
-</script>
