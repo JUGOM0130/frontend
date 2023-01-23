@@ -1,42 +1,26 @@
 <template>
-  <div class="container">
-    <v-alert :value="isError" color="red">aaa</v-alert>
+  <div>
+    <v-fade-transition>
+      <v-alert v-model="isError" type="error" title="ERR" v-text="errorMessage"></v-alert>
+    </v-fade-transition>
     <h1>登録</h1>
     <div class="form-check">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="flexRadioDefault"
-        id="flexRadioDefault1"
-        value="1"
-        v-model="ctkind"
-      />
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1"
+        v-model="ctkind" />
       <label class="form-check-label" for="flexRadioDefault1">
         XXX-AxxxxZ000
       </label>
     </div>
     <div class="form-check">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="flexRadioDefault"
-        id="flexRadioDefault2"
-        value="2"
-        v-model="ctkind"
-      />
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2"
+        v-model="ctkind" />
       <label class="form-check-label" for="flexRadioDefault2">
         XXX-AAxxxZ000
       </label>
     </div>
     <div class="form-check">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="flexRadioDefault"
-        id="flexRadioDefault3"
-        value="3"
-        v-model="ctkind"
-      />
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="3"
+        v-model="ctkind" />
       <label class="form-check-label" for="flexRadioDefault3">
         XX-xxxxZ0
       </label>
@@ -46,14 +30,7 @@
       <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
         <!--  ALD  -->
         <div class="p-2 bd-highlight">
-          <input
-            type="text"
-            class="form-control"
-            id="cthead"
-            v-model="cthead"
-            v-on:blur="getNewNo"
-            tabindex="50"
-          />
+          <input type="text" class="form-control" id="cthead" v-model="cthead" v-on:blur="getNewNo" tabindex="50" />
         </div>
         <!--  ハイフン  -->
         <div class="p-2 bd-highlight myset-haba1">
@@ -61,41 +38,21 @@
         </div>
         <!--  英語Number  -->
         <div class="p-2 bd-highlight">
-          <input
-            type="text"
-            v-bind:class="[ctenumber_class]"
-            id="ctenumber"
-            v-model="ctenumber"
-            v-on:blur="getNewNo"
-            v-bind:readonly="readonly"
-            tabindex="52"
-          />
+          <input type="text" v-bind:class="[ctenumber_class]" id="ctenumber" v-model="ctenumber" v-on:blur="getNewNo"
+            v-bind:readonly="readonly" tabindex="52" />
         </div>
         <!--  Number 0000 -->
         <div class="p-2 bd-highlight">
-          <input
-            type="text"
-            class="form-control"
-            id="ctnumber"
-            readonly
-            v-model="ctnumber"
-            tabindex="-1"
-          />
+          <input type="text" class="form-control" id="ctnumber" readonly v-model="ctnumber" tabindex="-1" />
         </div>
         <!--  Z0000  -->
         <div class="p-2 bd-highlight">
-          <input
-            type="text"
-            class="form-control"
-            id="ctfoot"
-            v-model="ctfoot"
-            v-on:blur="getNewNo"
-            tabindex="56"
-          />
+          <input type="text" class="form-control" id="ctfoot" v-model="ctfoot" v-on:blur="getNewNo" tabindex="56" />
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-primary" @click="regist">登録</button>
+
+    <v-btn variant="outlined" color="pink" @click="regist">登録</v-btn>
   </div>
 </template>
 <script>
@@ -207,9 +164,11 @@ export default {
   text-align: center;
   margin: auto 0;
 }
-.myset-haba1 > input {
+
+.myset-haba1>input {
   text-align: center;
 }
+
 .myset-haba-ctenumber {
   width: 60px;
   text-align: center;
