@@ -21,16 +21,16 @@ module.exports = defineConfig({
       filename: 'code.html', // build時に出力されるファイル名
       titel: '管理メニュー'
     },
-    users: {
-      entry: 'src/pages/login/main.js',
-      template: 'public/auto_numbering.html',
-      filename: 'auto_numbering.html',
+    staff: {
+      entry: 'src/pages/staff/main.js',
+      template: 'public/staff.html',
+      filename: 'staff.html',
     },
   },
 
   pluginOptions: {
     vuetify: {
-			// https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
-		}
+      // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
+    }
   }
 })

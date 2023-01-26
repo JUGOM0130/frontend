@@ -1,4 +1,4 @@
-
+<script setup></script>
 <template>
   <v-app>
     <v-main class="back_ground">
@@ -7,17 +7,17 @@
           <div>
             <a href="/">
               <v-img
-                lazy-src="../../assets/avail_logo.png"
+                lazy-src=""
                 max-height="100"
                 max-width="200"
-                src="../../assets/avail_logo.png"
+                src="@/assets/avail_logo.png"
               ></v-img>
             </a>
           </div>
           <nav>
             <router-link to="/">コード系メニューTop</router-link> |
-            <router-link to="/code_create">コード採番</router-link> |
-            <router-link to="/code_list">コード一覧</router-link>
+            <router-link to="/">コード採番</router-link> |
+            <router-link to="/">コード一覧</router-link>
           </nav>
         </div>
         <hr />
@@ -27,17 +27,3 @@
     </v-main>
   </v-app>
 </template>
-
-
-
-<style scoped>
-.back_ground {
-  background-color: rgb(215, 215, 215);
-  min-height: 100vh;
-}
-.header_icon {
-  width: 15%;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-</style>
