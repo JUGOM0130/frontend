@@ -3,60 +3,25 @@
     <div class="row g-2">
       <div class="col">
         <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="kind0"
-            id="kind0"
-            value="0"
-            v-model="ctkind"
-            checked
-          />
+          <input class="form-check-input" type="radio" name="kind0" id="kind0" value="0" v-model="ctkind" checked />
           <label class="form-check-label" for="kind0"> ALL </label>
         </div>
         <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="kind1"
-            id="kind1"
-            value="1"
-            v-model="ctkind"
-          />
+          <input class="form-check-input" type="radio" name="kind1" id="kind1" value="1" v-model="ctkind" />
           <label class="form-check-label" for="kind1"> XXX-AxxxxZ000 </label>
         </div>
         <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="kind2"
-            id="kind2"
-            value="2"
-            v-model="ctkind"
-          />
+          <input class="form-check-input" type="radio" name="kind2" id="kind2" value="2" v-model="ctkind" />
           <label class="form-check-label" for="kind2"> XXX-AAxxxZ000 </label>
         </div>
         <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="kind3"
-            id="kind3"
-            value="3"
-            v-model="ctkind"
-          />
+          <input class="form-check-input" type="radio" name="kind3" id="kind3" value="3" v-model="ctkind" />
           <label class="form-check-label" for="kind3"> XX-xxxxZ0 </label>
         </div>
       </div>
       <div class="col">
-        <input
-          class="form-control"
-          type="text"
-          name="serchword"
-          id="serchword"
-          placeholder="検索キーワード"
-          v-model="serchword"
-        />
+        <input class="form-control" type="text" name="serchword" id="serchword" placeholder="検索キーワード"
+          v-model="serchword" />
       </div>
     </div>
     <table class="table">
@@ -76,11 +41,7 @@
           <td>{{ data.format }}</td>
           <td>{{ data.pname }}</td>
           <td>
-            <button
-              type="button"
-              class="btn btn-outline-success"
-              @click="moveNextScreen(data)"
-            >
+            <button type="button" class="btn btn-outline-success" @click="moveNextScreen(data)">
               登録・更新
             </button>
           </td>
@@ -89,7 +50,7 @@
     </table>
   </div>
 </template>
-  <script>
+<script>
 import axios from "axios";
 import constant from "../../const";
 export default {
@@ -191,14 +152,15 @@ export default {
       this.datas.forEach((e, idx) => {
         //検索ワードと一致するものを検索
         if (this.serchword != "") {
-          if (e.pname != null && e.pname != "") {
-            if (e.pname.indexOf(this.serchword) != -1) {
+          if (e.pname == null || e.pname == "") {
+            e.pname = ""; 
+          }
+          if (e.pname.indexOf(this.serchword) != -1) {
+              this.datas[idx].isDisplay = true;
+            } else if (e.format.indexOf(this.serchword) != -1) {
               this.datas[idx].isDisplay = true;
             } else {
               this.datas[idx].isDisplay = false;
-            }
-          } else {
-            this.datas[idx].isDisplay = false;
           }
         } else {
           this.datas[idx].isDisplay = true;
