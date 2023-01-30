@@ -1,7 +1,14 @@
 <script setup>
 import axios from "axios";
 import constant from "@/const";
-import { reactive, ref, onMounted, defineExpose, defineEmits } from "vue";
+import {
+  reactive,
+  ref,
+  onMounted,
+  defineExpose,
+  defineEmits,
+  watch,
+} from "vue";
 
 let ctkind = ref(0);
 const columns = ["ID", "種別", "英番号", "ヘッダ"];
@@ -11,6 +18,7 @@ let datas = reactive([
     ctkind: 1,
     cthead: "",
     ctenumber: "",
+    isDispay: true,
   },
 ]);
 const getList = () => {
@@ -26,6 +34,7 @@ const getList = () => {
             ctkind: element.ctkind,
             cthead: element.cthead,
             ctenumber: element.ctenumber,
+            isDispay: true,
           })
         );
       });
@@ -39,6 +48,21 @@ const emit = defineEmits(["codeTempData"]);
 const clickevent = (data) => {
   emit("codeTempData", data);
 };
+watch(ctkind, () => {
+  if (ctkind.value != 0) {
+    datas.forEach((dt, i) => {
+      if (dt.ctkind == ctkind.value) {
+        datas[i].isDispay = true;
+      } else {
+        datas[i].isDispay = false;
+      }
+    });
+  } else {
+    datas.forEach((dt, i) => {
+      datas[i].isDispay = true;
+    });
+  }
+});
 onMounted(() => {
   getList();
 });
@@ -103,7 +127,12 @@ defineExpose({
         </tr>
       </thead>
       <tbody>
-        <tr v-for="data in datas" :key="data" @click="clickevent(data)">
+        <tr
+          v-for="data in datas"
+          :key="data"
+          @click="clickevent(data)"
+          v-show="data.isDispay"
+        >
           <th scope="row">{{ data.ctid }}</th>
           <td>{{ data.ctkind }}</td>
           <td>{{ data.ctenumber }}</td>
