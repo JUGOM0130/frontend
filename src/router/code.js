@@ -22,6 +22,16 @@ const routes = [{
         name: 'code_data_regist',
         component: () => import('../pages/code/CodeDataRegist.vue')
     },
+    {
+        path: '/code_template_regist',
+        name: 'code_template_regist',
+        component: () => import('../pages/code/CodeTempRegist.vue')
+    },
+    {
+        path: '/code_template_list',
+        name: 'code_template_list',
+        component: () => import('../pages/code/CodeTempList.vue')
+    }
 ]
 
 const router = createRouter({

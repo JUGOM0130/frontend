@@ -8,6 +8,11 @@
       <li>
         <router-link to="./code_list">コード一覧</router-link>
       </li>
+      <li>
+        <router-link to="./code_template_regist"
+          >コードテンプレート登録</router-link
+        >
+      </li>
     </ul>
   </div>
 </template>
