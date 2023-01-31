@@ -76,13 +76,18 @@
           <td>{{ data.format }}</td>
           <td>{{ data.pname }}</td>
           <td>
-            <button
-              type="button"
-              class="btn btn-outline-success"
+            <v-btn
+              variant="outlined"
               @click="moveNextScreen(data)"
+              class="text-light-blue-darken-4"
             >
               登録・更新
-            </button>
+            </v-btn>
+          </td>
+          <td>
+            <v-btn variant="outlined" class="text-purple-lighten-2">
+              工程追加
+            </v-btn>
           </td>
         </tr>
       </tbody>
@@ -106,6 +111,7 @@ export default {
         "フッダ",
         "フォーマット",
         "名称",
+        "",
         "",
       ],
       datas: [

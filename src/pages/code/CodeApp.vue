@@ -44,10 +44,9 @@ const logoclick = () => {
               v-for="(item, index) in items"
               :key="index"
               :value="index"
+              @click="menuclick(item)"
             >
-              <v-list-item-title @click="menuclick(item)">{{
-                item.title
-              }}</v-list-item-title>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
