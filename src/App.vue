@@ -16,6 +16,7 @@
             </div>
             <nav>
               <router-link to="/">Top</router-link> | <a href="/code">PDM</a> |
+              <a href="/tree">tree</a>
             </nav>
           </div>
           <hr />

@@ -26,6 +26,11 @@ module.exports = defineConfig({
       template: 'public/staff.html',
       filename: 'staff.html',
     },
+    tree: {
+      entry: 'src/pages/tree/main.js',
+      template: 'public/tree.html',
+      filename: 'tree.html',
+    },
   },
 
   pluginOptions: {
