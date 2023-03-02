@@ -26,6 +26,7 @@ const getList = () => {
   axios
     .get(TO)
     .then((res) => {
+      console.log(res)
       datas.splice(0); //配列の初期化
       res.data.result.data.forEach((element) => {
         datas.push(

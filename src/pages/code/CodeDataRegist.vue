@@ -147,7 +147,7 @@ export default {
   data() {
     return {
       pid: 0,
-      pctid: 0,
+      pcid: 0,
       pcd: "",
       pname: "",
       ppname: "",
@@ -203,7 +203,7 @@ export default {
         .get(TO, this.$data)
         .then((res) => {
           let dt = res.data;
-          this.pctid = dt.pctid;
+          this.pcid = dt.pcid;
           this.pcd = dt.pcd;
           this.pname = dt.pname;
           this.ppname = dt.ppname;
@@ -223,7 +223,7 @@ export default {
     },
   },
   mounted: function () {
-    this.pctid = this.$store.state.id;
+    this.pcid = this.$store.state.id;
     this.pcd = this.$store.state.cd;
     this.pid = this.$store.state.parts_id;
     if (this.pid != 0) {

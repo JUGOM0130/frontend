@@ -6,7 +6,11 @@ import {
 const routes = [{
         path: '/',
         name: 'tree',
-        component: () => import('@/pages/tree/TreeApp.vue')
+        component: () => import('@/pages/tree/TreeTest.vue')
+    },{
+        path: '/create',
+        name: 'treecreate',
+        component: () => import('@/pages/tree/TreeRootCreate.vue')
     },
 
 ]

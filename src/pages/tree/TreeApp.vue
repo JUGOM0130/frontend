@@ -1,52 +1,51 @@
-<script setup>
-import { ref } from "vue";
-import { treeDataAdd } from "@/pages/tree/Tree.js";
-import TreeViewComponent from "./TreeViewComponent.vue";
-let where = ref(1);
-let id = ref(0);
-let name = ref("");
-
-let data = ref([
-  {
-    id: 1,
-    name: "takahasi",
-    child: [
-      {
-        id: 2,
-        name: "takeda",
-        child: [
-          {
-            id: 3,
-            name: "jugom",
-            child: [],
-          },
-        ],
-      },
-    ],
-  },
-]);
-</script>
 <template>
-  <div>
-    <div>
-      <div>
-        <label for="where">where:</label>
-        <input type="number" name="where" id="where" v-model="where" />
+  <v-app>
+    <v-main>
+      <div class="back_ground">
+        <div class="container">
+          <div class="header">
+            <div>
+              <a href="/">
+                <v-img
+                  lazy-src="@/assets/avail_logo.png"
+                  max-height="100"
+                  max-width="200"
+                  src="@/assets/avail_logo.png"
+                ></v-img>
+              </a>
+            </div>
+            <nav>
+              <router-link to="/">TreeTop</router-link> | <router-link to="/create">ツリー作成</router-link>
+              </nav>
+          </div>
+          <hr />
+          <!-- router-viewにURLと同じ物が表示される bodyに置き換わる -->
+          <router-view />
+        </div>
       </div>
-      <div>
-        <label for="target_id">target_id:</label>
-        <input type="number" name="target_id" id="target_id" v-model="id" />
-      </div>
-      <div>
-        <label for="name">name:</label>
-        <input type="text" name="name" id="name" v-model="name" />
-      </div>
-    </div>
-    <button
-      @click="treeDataAdd(where, data, { id: id, name: name, child: [] })"
-    >
-      追加ボタン
-    </button>
-    <TreeViewComponent :data1="data"></TreeViewComponent>
-  </div>
+    </v-main>
+  </v-app>
 </template>
+
+
+<style scoped>
+.back_ground {
+  background-color: rgb(215, 215, 215);
+  min-height: 100vh;
+}
+.header_icon {
+  width: 15%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+</style>
+
+<script>
+export default {
+  name: "App",
+
+  data: () => ({
+    //
+  }),
+};
+</script>

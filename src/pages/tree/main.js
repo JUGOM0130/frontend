@@ -2,8 +2,7 @@ import {
     createApp
 } from 'vue'
 import App from './TreeApp.vue'
-import router from '../../router/code'
-import store from '../../store/code'
+import router from '../../router/tree'
 import vuetify from '../../plugins/vuetify'
 import {
     loadFonts
@@ -14,6 +13,5 @@ loadFonts()
 const app = createApp(App)
 
 app.use(router)
-app.use(store)
 app.use(vuetify)
 app.mount('#app')
