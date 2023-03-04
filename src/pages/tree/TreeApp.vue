@@ -15,8 +15,9 @@
               </a>
             </div>
             <nav>
-              <router-link to="/">TreeTop</router-link> | <router-link to="/create">ツリー作成</router-link>
-              </nav>
+              <router-link to="/">TreeTop</router-link> |
+              <router-link to="/create">ツリー作成</router-link>
+            </nav>
           </div>
           <hr />
           <!-- router-viewにURLと同じ物が表示される bodyに置き換わる -->

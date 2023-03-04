@@ -1,52 +1,40 @@
+<script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+let select_item = ref({ car_number: "1", car_name: "VELLFIRE" });
+const items = [
+  { car_number: "1", car_name: "VELLFIRE" },
+  { car_number: "2", car_name: "RANDCRUISER" },
+  { car_number: "3", car_name: "HIACE" },
+];
+const nextScreen = () => {
+  router.push({
+    path: "/tree_create",
+    query: {
+      number: select_item.value.car_number,
+      name: select_item.value.car_name,
+    },
+  });
+};
+</script>
+
 <template>
-    <v-app>
-      <v-main>
-        <div class="back_ground">
-          <div class="container">
-            <div class="header">
-              <div>
-                <a href="/">
-                  <v-img
-                    lazy-src="@/assets/avail_logo.png"
-                    max-height="100"
-                    max-width="200"
-                    src="@/assets/avail_logo.png"
-                  ></v-img>
-                </a>
-              </div>
-              <nav>
-                <router-link to="/">TreeTop</router-link> | <router-link to="/create">ツリー作成</router-link>
-                </nav>
-            </div>
-            <hr />
-            <!-- router-viewにURLと同じ物が表示される bodyに置き換わる -->
-            <router-view />
-          </div>
-        </div>
-      </v-main>
-    </v-app>
-  </template>
-  
-  
-  <style scoped>
-  .back_ground {
-    background-color: rgb(215, 215, 215);
-    min-height: 100vh;
-  }
-  .header_icon {
-    width: 15%;
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
-  </style>
-  
-  <script>
-  export default {
-    name: "App",
-  
-    data: () => ({
-      //
-    }),
-  };
-  </script>
-  
+  <div>
+    <v-select
+      label="製品"
+      v-model="select_item"
+      :items="items"
+      item-title="car_name"
+      item-value="car_number"
+      :hint="`${select_item.car_name}, ${select_item.car_number}`"
+      persistent-hint
+      return-object
+    ></v-select>
+    <v-btn @click="nextScreen">次へ</v-btn>
+  </div>
+</template>
+
+
+<style scoped>
+</style>

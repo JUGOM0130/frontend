@@ -1,3 +1,7 @@
+import {
+    unref
+} from 'vue'
+
 let ARR = []
 
 function getTreeDatas(data) {
@@ -45,19 +49,32 @@ export function getTreeList(data) {
     return ARR
 }
 
+export function test(args1) {
+    console.log(args1)
+    console.log(unref(args1))
+}
+
+export function treeDataAdd(id, treeobjectJson, childObjectData) {
+
+    console.log("treeDataAddメソッド↓")
+    console.log(childObjectData)
+    console.log(JSON.parse(treeobjectJson));
 
 
-export function treeDataAdd(id, treeObj, addData) {
-
-    console.log(addData)
-    treeObj.forEach(element => {
+    let obj = JSON.parse(treeobjectJson);
+    obj.forEach(element => {
         if (element.id == id) {
-            if (addData.id != "" && addData.name != "") {
-                element.child.push(addData)
+            element.child.push(childObjectData)
+        } else {
+            if (element.child.length > 0) {
+                const json = JSON.stringify(element.child)
+                element.child = treeDataAdd(id, json, childObjectData)
             }
-        } else if (element.child.length > 0) {
-            treeDataAdd(id, element.child, addData)
         }
     });
-    return treeObj
+
+    console.log(obj);
+    console.log("treeDataAddメソッド↑")
+
+    return obj
 }
