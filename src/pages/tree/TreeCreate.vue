@@ -2,10 +2,10 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import TreeViewComponent from "./TreeViewComponent.vue";
-import { treeDataAdd, getTreeList, test as aaa } from "./Tree";
+import { treeDataAdd, getTreeList } from "./Tree";
 
 const route = useRoute();
-
+let random_key = ref("aasdfdsaf");
 let obj = ref([]);
 let name = ref("");
 let settingId = ref("");
@@ -16,19 +16,63 @@ const add = () => {
   let sId = settingId.value;
   let sName = name.value;
   let data = { id: sId, name: sName, child: [] };
-  let parentObjectId = String(selected.value.id);
-  let o = treeDataAdd(parentObjectId, JSON.stringify(obj.value), data);
 
-  obj.value = o;
+  //同じ要素があるかチェック
+  let flag = true;
+  items.value.forEach((element) => {
+    if (element.id == sId) {
+      //あればフラグをDOWN
+      flag = false;
+    }
+  });
 
-  console.log("object↓");
-  console.log(obj.value);
-
-  items = ref(getTreeList(o));
+  //同じ要素がない場合オブジェクトに追加処理
+  if (flag) {
+    let parentObjectId = String(selected.value.id);
+    let o = treeDataAdd(parentObjectId, JSON.stringify(obj.value), data);
+    obj.value = o;
+    items = ref(getTreeList(o));
+    random_key.value = Math.random().toString(32).substring(2);
+  } else {
+    console.log(`ID${sId}は既に存在します。`);
+  }
 };
 
 const test = () => {
-  aaa(obj);
+  const o = {
+    id: "JUN",
+    name: "JUN",
+    class: "",
+    child: [
+      {
+        id: "SHOKI",
+        name: "SHOKI",
+        class: "",
+        child: [
+          {
+            id: "KAEDE",
+            name: "KAEDE",
+            class: "",
+            child: [{ id: "KANON", name: "KANON", child: [] }],
+          },
+          {
+            id: "MEIMI",
+            name: "MEIMI",
+            class: "",
+            child: [{ id: "MAI", name: "MAI", child: [] }],
+          },
+        ],
+      },
+      { id: "YOSHIYUKI", name: "YOSHIYUKI", class: "", child: [] },
+      { id: "TAKAMITU", name: "TAKAMITU", class: "", child: [] },
+    ],
+  };
+  console.log(obj.value);
+  obj = ref([]);
+  let b = ref(o);
+  obj.value.push(b.value);
+  console.log(obj.value);
+  random_key.value = Math.random().toString(32).substring(2);
 };
 
 onMounted(() => {
@@ -41,7 +85,7 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <TreeViewComponent :data1="obj" :key="items"></TreeViewComponent>
+    <TreeViewComponent :data1="obj" :key="random_key"></TreeViewComponent>
     <v-select
       v-model="selected"
       label="対象の子ノードに下記要素を追加"
