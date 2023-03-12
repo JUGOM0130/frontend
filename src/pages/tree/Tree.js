@@ -1,7 +1,3 @@
-import {
-    unref
-} from 'vue'
-
 let ARR = []
 
 function getTreeDatas(data) {
@@ -49,10 +45,7 @@ export function getTreeList(data) {
     return ARR
 }
 
-export function test(args1) {
-    console.log(args1)
-    console.log(unref(args1))
-}
+
 
 export function treeDataAdd(id, treeobjectJson, childObjectData) {
 
