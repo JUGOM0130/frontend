@@ -64,15 +64,15 @@ const treeAdd = () => {
       }
     });
     //同じレベルの要素が何個あるかカウント
-    tree.value.forEach((e)=>{
-      if(e.parentId == target.parentId){
+    tree.value.forEach((e) => {
+      if (e.parentId == target.parentId) {
         eq_lv_counter++;
       }
     });
     console.log(index);
     obj.lv = String(Number(target.lv) + 1);
     obj.parentId = target.id;
-    tree.value.splice((index + 1)+eq_lv_counter, 0, obj);
+    tree.value.splice((index + 1) + eq_lv_counter, 0, obj);
     tree.value.forEach((e, i) => {
       e.order = i;
     });
@@ -102,36 +102,43 @@ onMounted(() => {
         <th>外注加工費</th>
         <th>直接労務費</th>
       </tr>
-      <tr v-for="t in tree" :key="t.id">
-        <td draggable="true">
-          <div class="space" v-for="k in t.lv - 1" :key="k"></div>
-          {{ t.name }}
-        </td>
-        <td><v-text-field label="名称" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="製品名称" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="版数" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="員数" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="母数" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="型式" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="材質" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="内外作" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="ステータス" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="主要材料費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="補助材料費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="外注加工費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-        <td><v-text-field label="直接労務費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-      </tr>
+        <tr v-for="t in tree" :key="t.id">
+          <td draggable="true">
+            <div class="space" v-for="k in t.lv - 1" :key="k"></div>
+            {{ t.name }}
+          </td>
+          <!--
+          <td><v-text-field label="名称" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="製品名称" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="版数" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="員数" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="母数" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="型式" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="材質" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="内外作" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="ステータス" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="主要材料費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="補助材料費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="外注加工費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          <td><v-text-field label="直接労務費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
+          -->
+          <td><input type="text" class="myset_input" placeholder="名称"></td>
+          <td><input type="text" class="myset_input" placeholder="製品名称"></td>
+          <td><input type="text" class="myset_input" placeholder="版数"></td>
+          <td><input type="text" class="myset_input" placeholder="員数"></td>
+          <td><input type="text" class="myset_input" placeholder="母数"></td>
+          <td><input type="text" class="myset_input" placeholder="型式"></td>
+          <td><input type="text" class="myset_input" placeholder="材質"></td>
+          <td><input type="text" class="myset_input" placeholder="内外作"></td>
+          <td><input type="text" class="myset_input" placeholder="ステータス"></td>
+          <td><input type="text" class="myset_input" placeholder="主要材料費"></td>
+          <td><input type="text" class="myset_input" placeholder="補助材料費"></td>
+          <td><input type="text" class="myset_input" placeholder="外注加工費"></td>
+          <td><input type="text" class="myset_input" placeholder="直接労務費"></td>
+        </tr>
     </table>
-    <v-select
-      label="製品"
-      v-model="selected"
-      :items="tree"
-      item-title="name"
-      item-value="id"
-      :hint="`${selected.name} ,${selected.id}`"
-      persistent-hint
-      return-object
-    >
+    <v-select label="製品" v-model="selected" :items="tree" item-title="name" item-value="id"
+      :hint="`${selected.name} ,${selected.id}`" persistent-hint return-object>
     </v-select>
     <v-text-field label="追加要素" v-model="add_name"></v-text-field>
     <v-text-field label="追加要素ID" v-model="add_id"></v-text-field>
@@ -144,13 +151,30 @@ onMounted(() => {
   height: 20px;
   width: 20px;
 }
-th{
+
+th {
   margin-right: 2.5px;
   margin-left: 2.5px;
 }
-.compact_input{
+
+.compact_input {
   transform: scale(0.7);
   transform-Origin: left;
-  
+}
+
+.myset_input {
+  width: 100px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: gray;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+  margin-top: 2.5px;
+}
+
+.myset_table>tr {
+  display: flex;
+  width: 1000px;
+  overflow-x: scroll;
 }
 </style>
