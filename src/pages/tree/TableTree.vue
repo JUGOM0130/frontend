@@ -65,11 +65,11 @@ const treeAdd = () => {
     });
     //同じレベルの要素が何個あるかカウント
     tree.value.forEach((e) => {
-      if (e.parentId == target.parentId) {
+      if (e.parentId == target.id) {
         eq_lv_counter++;
       }
     });
-    console.log(index);
+    console.log(`index = ${index} eq_lv_counter = ${eq_lv_counter}`);
     obj.lv = String(Number(target.lv) + 1);
     obj.parentId = target.id;
     tree.value.splice(index + 1 + eq_lv_counter, 0, obj);
@@ -105,26 +105,12 @@ onMounted(() => {
         </tr>
         <tr v-for="t in tree" :key="t.id">
           <td>
-            <div>
+            <div style="display: flex">
               <div class="space" v-for="k in t.lv - 1" :key="k"></div>
               {{ t.name }}
             </div>
           </td>
-          <!--
-          <td><v-text-field label="名称" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="製品名称" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="版数" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="員数" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="母数" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="型式" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="材質" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="内外作" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="ステータス" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="主要材料費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="補助材料費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="外注加工費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          <td><v-text-field label="直接労務費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
-          -->
+
           <td><input type="text" class="myset_input" placeholder="名称" /></td>
           <td>
             <input type="text" class="myset_input" placeholder="製品名称" />
@@ -173,9 +159,10 @@ onMounted(() => {
 </template>
 <style scoped>
 .space {
-  display: inline-block;
-  height: 20px;
+  display: block;
+  height: 100%;
   width: 30px;
+  height: 30px;
 }
 
 .myset_input {
@@ -197,6 +184,7 @@ onMounted(() => {
 }
 .table_wrappar * {
   padding: 0px;
+  margin: 0px;
 }
 .table {
 }
@@ -211,7 +199,6 @@ onMounted(() => {
 }
 
 .table th:nth-child(1) {
-  width: fit-content;
   min-width: 200px;
   position: sticky;
   left: 0;
@@ -221,7 +208,7 @@ onMounted(() => {
 
 .table td:nth-child(1) {
   background-color: white;
-  width: fit-content + 30px;
+  max-width: max-content + 30px;
   min-width: 200px;
   position: sticky;
   left: 0;
