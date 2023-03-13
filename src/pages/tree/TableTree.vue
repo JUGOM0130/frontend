@@ -72,7 +72,7 @@ const treeAdd = () => {
     console.log(index);
     obj.lv = String(Number(target.lv) + 1);
     obj.parentId = target.id;
-    tree.value.splice((index + 1) + eq_lv_counter, 0, obj);
+    tree.value.splice(index + 1 + eq_lv_counter, 0, obj);
     tree.value.forEach((e, i) => {
       e.order = i;
     });
@@ -85,27 +85,30 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <table>
-      <tr>
-        <th>部品名</th>
-        <th>名称</th>
-        <th>製品名称</th>
-        <th>版数</th>
-        <th>員数</th>
-        <th>母数</th>
-        <th>型式</th>
-        <th>材質</th>
-        <th>内外策</th>
-        <th>ステータス</th>
-        <th>主要材料費</th>
-        <th>補助材料費</th>
-        <th>外注加工費</th>
-        <th>直接労務費</th>
-      </tr>
+    <div class="table_wrappar">
+      <table class="table">
+        <tr>
+          <th>部品名</th>
+          <th>名称</th>
+          <th>製品名称</th>
+          <th>版数</th>
+          <th>員数</th>
+          <th>母数</th>
+          <th>型式</th>
+          <th>材質</th>
+          <th>内外策</th>
+          <th>ステータス</th>
+          <th>主要材料費</th>
+          <th>補助材料費</th>
+          <th>外注加工費</th>
+          <th>直接労務費</th>
+        </tr>
         <tr v-for="t in tree" :key="t.id">
-          <td draggable="true">
-            <div class="space" v-for="k in t.lv - 1" :key="k"></div>
-            {{ t.name }}
+          <td>
+            <div>
+              <div class="space" v-for="k in t.lv - 1" :key="k"></div>
+              {{ t.name }}
+            </div>
           </td>
           <!--
           <td><v-text-field label="名称" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
@@ -122,48 +125,61 @@ onMounted(() => {
           <td><v-text-field label="外注加工費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
           <td><v-text-field label="直接労務費" hide-details="auto" single-line="true" class="compact_input"></v-text-field></td>
           -->
-          <td><input type="text" class="myset_input" placeholder="名称"></td>
-          <td><input type="text" class="myset_input" placeholder="製品名称"></td>
-          <td><input type="text" class="myset_input" placeholder="版数"></td>
-          <td><input type="text" class="myset_input" placeholder="員数"></td>
-          <td><input type="text" class="myset_input" placeholder="母数"></td>
-          <td><input type="text" class="myset_input" placeholder="型式"></td>
-          <td><input type="text" class="myset_input" placeholder="材質"></td>
-          <td><input type="text" class="myset_input" placeholder="内外作"></td>
-          <td><input type="text" class="myset_input" placeholder="ステータス"></td>
-          <td><input type="text" class="myset_input" placeholder="主要材料費"></td>
-          <td><input type="text" class="myset_input" placeholder="補助材料費"></td>
-          <td><input type="text" class="myset_input" placeholder="外注加工費"></td>
-          <td><input type="text" class="myset_input" placeholder="直接労務費"></td>
+          <td><input type="text" class="myset_input" placeholder="名称" /></td>
+          <td>
+            <input type="text" class="myset_input" placeholder="製品名称" />
+          </td>
+          <td><input type="text" class="myset_input" placeholder="版数" /></td>
+          <td><input type="text" class="myset_input" placeholder="員数" /></td>
+          <td><input type="text" class="myset_input" placeholder="母数" /></td>
+          <td><input type="text" class="myset_input" placeholder="型式" /></td>
+          <td><input type="text" class="myset_input" placeholder="材質" /></td>
+          <td>
+            <input type="text" class="myset_input" placeholder="内外作" />
+          </td>
+          <td>
+            <input type="text" class="myset_input" placeholder="ステータス" />
+          </td>
+          <td>
+            <input type="text" class="myset_input" placeholder="主要材料費" />
+          </td>
+          <td>
+            <input type="text" class="myset_input" placeholder="補助材料費" />
+          </td>
+          <td>
+            <input type="text" class="myset_input" placeholder="外注加工費" />
+          </td>
+          <td>
+            <input type="text" class="myset_input" placeholder="直接労務費" />
+          </td>
         </tr>
-    </table>
-    <v-select label="製品" v-model="selected" :items="tree" item-title="name" item-value="id"
-      :hint="`${selected.name} ,${selected.id}`" persistent-hint return-object>
+      </table>
+    </div>
+    <v-select
+      label="製品"
+      v-model="selected"
+      :items="tree"
+      item-title="name"
+      item-value="id"
+      :hint="`${selected.name} ,${selected.id}`"
+      persistent-hint
+      return-object
+    >
     </v-select>
     <v-text-field label="追加要素" v-model="add_name"></v-text-field>
     <v-text-field label="追加要素ID" v-model="add_id"></v-text-field>
     <v-btn @click="treeAdd()">追加</v-btn>
   </div>
 </template>
-<style>
+<style scoped>
 .space {
   display: inline-block;
   height: 20px;
-  width: 20px;
-}
-
-th {
-  margin-right: 2.5px;
-  margin-left: 2.5px;
-}
-
-.compact_input {
-  transform: scale(0.7);
-  transform-Origin: left;
+  width: 30px;
 }
 
 .myset_input {
-  width: 100px;
+  width: auto;
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: gray;
@@ -172,9 +188,50 @@ th {
   margin-top: 2.5px;
 }
 
-.myset_table>tr {
-  display: flex;
-  width: 1000px;
-  overflow-x: scroll;
+.table_wrappar {
+  grid-area: content;
+  overflow: scroll;
+  border-style: solid;
+  border-width: 1px;
+  margin: 5px;
+}
+.table_wrappar * {
+  padding: 0px;
+}
+.table {
+}
+.table_wrappar th {
+  text-align: center;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-right-color: black;
+  border-bottom-color: black;
+}
+
+.table th:nth-child(1) {
+  width: fit-content;
+  min-width: 200px;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background-color: gainsboro;
+}
+
+.table td:nth-child(1) {
+  background-color: white;
+  width: fit-content + 30px;
+  min-width: 200px;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+
+  border-right-style: solid;
+  border-right-color: black;
+  border-right-width: 1px;
+
+  font-size: 24px;
+  vertical-align: middle;
 }
 </style>
