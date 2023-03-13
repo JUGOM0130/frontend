@@ -105,9 +105,9 @@ onMounted(() => {
         </tr>
         <tr v-for="t in tree" :key="t.id">
           <td>
-            <div style="display: flex">
+            <div class="flex_box">
               <div class="space" v-for="k in t.lv - 1" :key="k"></div>
-              {{ t.name }}
+              <div class="flex_item">{{ t.name }}</div>
             </div>
           </td>
 
@@ -159,8 +159,7 @@ onMounted(() => {
 </template>
 <style scoped>
 .space {
-  display: block;
-  height: 100%;
+  display: inline;
   width: 30px;
   height: 30px;
 }
@@ -186,7 +185,12 @@ onMounted(() => {
   padding: 0px;
   margin: 0px;
 }
-.table {
+.flex_box {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.flex_item {
+  flex-basis: content;
 }
 .table_wrappar th {
   text-align: center;
