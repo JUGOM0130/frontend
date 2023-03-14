@@ -3,7 +3,23 @@ import { onMounted, ref, defineProps } from "vue";
 const props = defineProps({
   root: Array,
 });
-let tree = ref(props.root);
+const ISTEST = true;
+
+let tree;
+if (!ISTEST) {
+  tree = ref(props.root);
+} else {
+  tree = ref([
+    { id: "1", name: "VELLFIRE", lv: "1", parentId: "0", order: "" },
+    { id: "2", name: "ALD-A0001Z000", lv: "2", parentId: "1", order: "" },
+    { id: "3", name: "ALD-A0002Z000", lv: "3", parentId: "2", order: "" },
+    { id: "4", name: "ALD-A0003Z000", lv: "4", parentId: "3", order: "" },
+    { id: "5", name: "ALD-AA001Z000", lv: "5", parentId: "4", order: "" },
+    { id: "6", name: "ALD-AA001Y001", lv: "6", parentId: "5", order: "" },
+    { id: "7", name: "ALD-AA001Y002", lv: "6", parentId: "5", order: "" },
+  ]);
+}
+
 let selected = ref(tree.value[0]);
 let add_id = ref("");
 let add_name = ref("");
@@ -63,13 +79,14 @@ const treeAdd = () => {
         index = i;
       }
     });
-    //同じレベルの要素が何個あるかカウント
-    tree.value.forEach((e) => {
-      if (e.parentId == target.id) {
-        eq_lv_counter++;
-      }
-    });
-    console.log(`index = ${index} eq_lv_counter = ${eq_lv_counter}`);
+
+    eq_lv_counter = getInsertPosition(tree.value, target);
+
+    console.log(
+      `index = ${index}
+       eq_lv_counter = ${eq_lv_counter}
+       getInsertPosition() = ${getInsertPosition(tree.value, target)}`
+    );
     obj.lv = String(Number(target.lv) + 1);
     obj.parentId = target.id;
     tree.value.splice(index + 1 + eq_lv_counter, 0, obj);
@@ -78,6 +95,17 @@ const treeAdd = () => {
     });
   }
   console.log(tree.value);
+};
+const getInsertPosition = (tree, target) => {
+  let eq_lv = [];
+  let sum = 0;
+  eq_lv = tree.filter((t) => {
+    return t.parentId == target.id;
+  });
+  eq_lv.forEach((new_target) => {
+    sum = getInsertPosition(tree, new_target);
+  });
+  return eq_lv.length + sum;
 };
 onMounted(() => {
   treeListSort();
@@ -107,7 +135,7 @@ onMounted(() => {
           <td>
             <div class="flex_box">
               <div class="space" v-for="k in t.lv - 1" :key="k"></div>
-              <div class="flex_item">{{ t.name }}</div>
+              <p class="flex_item">{{ t.name }}</p>
             </div>
           </td>
 
@@ -191,6 +219,7 @@ onMounted(() => {
 }
 .flex_item {
   flex-basis: content;
+  white-space: nowrap;
 }
 .table_wrappar th {
   text-align: center;
