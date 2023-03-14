@@ -106,10 +106,10 @@ const getInsertPosition = (tree, target) => {
   eq_lv.forEach((new_target) => {
     sum_arr.push(getInsertPosition(tree, new_target));
   });
-
   sum = sum_arr.reduce(function (sum, element) {
     return sum + element;
   }, 0);
+
   return eq_lv.length + sum;
 };
 onMounted(() => {
