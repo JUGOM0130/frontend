@@ -83,7 +83,7 @@ const treeAdd = () => {
     eq_lv_counter = getInsertPosition(tree.value, target);
 
     console.log(
-      `index = ${index}
+      `\tindex = ${index}
        eq_lv_counter = ${eq_lv_counter}
        getInsertPosition() = ${getInsertPosition(tree.value, target)}`
     );
@@ -98,13 +98,18 @@ const treeAdd = () => {
 };
 const getInsertPosition = (tree, target) => {
   let eq_lv = [];
+  let sum_arr = [];
   let sum = 0;
   eq_lv = tree.filter((t) => {
     return t.parentId == target.id;
   });
   eq_lv.forEach((new_target) => {
-    sum = getInsertPosition(tree, new_target);
+    sum_arr.push(getInsertPosition(tree, new_target));
   });
+
+  sum = sum_arr.reduce(function (sum, element) {
+    return sum + element;
+  }, 0);
   return eq_lv.length + sum;
 };
 onMounted(() => {
