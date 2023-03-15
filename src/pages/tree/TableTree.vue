@@ -145,52 +145,30 @@ onMounted(() => {
           </td>
 
           <td><input type="text" class="myset_input" placeholder="名称" /></td>
-          <td>
-            <input type="text" class="myset_input" placeholder="製品名称" />
-          </td>
+          <td><input type="text" class="myset_input" placeholder="製品名称" /></td>
           <td><input type="text" class="myset_input" placeholder="版数" /></td>
           <td><input type="text" class="myset_input" placeholder="員数" /></td>
           <td><input type="text" class="myset_input" placeholder="母数" /></td>
           <td><input type="text" class="myset_input" placeholder="型式" /></td>
           <td><input type="text" class="myset_input" placeholder="材質" /></td>
-          <td>
-            <input type="text" class="myset_input" placeholder="内外作" />
-          </td>
-          <td>
-            <input type="text" class="myset_input" placeholder="ステータス" />
-          </td>
-          <td>
-            <input type="text" class="myset_input" placeholder="主要材料費" />
-          </td>
-          <td>
-            <input type="text" class="myset_input" placeholder="補助材料費" />
-          </td>
-          <td>
-            <input type="text" class="myset_input" placeholder="外注加工費" />
-          </td>
-          <td>
-            <input type="text" class="myset_input" placeholder="直接労務費" />
-          </td>
+          <td><input type="text" class="myset_input" placeholder="内外作" /></td>
+          <td><input type="text" class="myset_input" placeholder="ステータス" /></td>
+          <td><input type="text" class="myset_input" placeholder="主要材料費" /></td>
+          <td><input type="text" class="myset_input" placeholder="補助材料費" /></td>
+          <td><input type="text" class="myset_input" placeholder="外注加工費" /></td>
+          <td><input type="text" class="myset_input" placeholder="直接労務費" /></td>
         </tr>
       </table>
     </div>
-    <v-select
-      label="製品"
-      v-model="selected"
-      :items="tree"
-      item-title="name"
-      item-value="id"
-      :hint="`${selected.name} ,${selected.id}`"
-      persistent-hint
-      return-object
-    >
+    <v-select label="製品" v-model="selected" :items="tree" item-title="name" item-value="id"
+      :hint="`${selected.name} ,${selected.id}`" persistent-hint return-object>
     </v-select>
     <v-text-field label="追加要素" v-model="add_name"></v-text-field>
     <v-text-field label="追加要素ID" v-model="add_id"></v-text-field>
     <v-btn @click="treeAdd()">追加</v-btn>
   </div>
 </template>
-<style scoped>
+<style scoped lang="scss">
 .space {
   display: inline;
   width: 30px;
@@ -213,50 +191,55 @@ onMounted(() => {
   border-style: solid;
   border-width: 1px;
   margin: 5px;
+
+  * {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  th {
+    text-align: center;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-right-color: black;
+    border-bottom-color: black;
+  }
+
+  .table { 
+    th:nth-child(1) {
+      min-width: 200px;
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      background-color: gainsboro;
+    }
+    td:nth-child(1) {
+    background-color: white;
+    max-width: max-content + 30px;
+    min-width: 200px;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+
+    border-right-style: solid;
+    border-right-color: black;
+    border-right-width: 1px;
+
+    font-size: 24px;
+    vertical-align: middle;
+  }
+  }
 }
-.table_wrappar * {
-  padding: 0px;
-  margin: 0px;
-}
+
 .flex_box {
   display: flex;
   flex-wrap: nowrap;
-}
-.flex_item {
-  flex-basis: content;
-  white-space: nowrap;
-}
-.table_wrappar th {
-  text-align: center;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-right-color: black;
-  border-bottom-color: black;
-}
 
-.table th:nth-child(1) {
-  min-width: 200px;
-  position: sticky;
-  left: 0;
-  z-index: 2;
-  background-color: gainsboro;
-}
-
-.table td:nth-child(1) {
-  background-color: white;
-  max-width: max-content + 30px;
-  min-width: 200px;
-  position: sticky;
-  left: 0;
-  z-index: 1;
-
-  border-right-style: solid;
-  border-right-color: black;
-  border-right-width: 1px;
-
-  font-size: 24px;
-  vertical-align: middle;
+  .flex_item {
+    flex-basis: content;
+    white-space: nowrap;
+  }
 }
 </style>
