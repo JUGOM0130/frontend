@@ -16,7 +16,7 @@
             </div>
             <nav>
               <router-link to="/">TreeTop</router-link> |
-              <router-link to="/create">ツリー作成</router-link>
+              <router-link to="/root_select">ツリー作成</router-link>
             </nav>
           </div>
           <hr />

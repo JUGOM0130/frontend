@@ -3,7 +3,7 @@ import { onMounted, ref, defineProps } from "vue";
 const props = defineProps({
   root: Array,
 });
-const ISTEST = true;
+const ISTEST = false;
 
 let tree;
 if (!ISTEST) {
@@ -145,23 +145,45 @@ onMounted(() => {
           </td>
 
           <td><input type="text" class="myset_input" placeholder="名称" /></td>
-          <td><input type="text" class="myset_input" placeholder="製品名称" /></td>
+          <td>
+            <input type="text" class="myset_input" placeholder="製品名称" />
+          </td>
           <td><input type="text" class="myset_input" placeholder="版数" /></td>
           <td><input type="text" class="myset_input" placeholder="員数" /></td>
           <td><input type="text" class="myset_input" placeholder="母数" /></td>
           <td><input type="text" class="myset_input" placeholder="型式" /></td>
           <td><input type="text" class="myset_input" placeholder="材質" /></td>
-          <td><input type="text" class="myset_input" placeholder="内外作" /></td>
-          <td><input type="text" class="myset_input" placeholder="ステータス" /></td>
-          <td><input type="text" class="myset_input" placeholder="主要材料費" /></td>
-          <td><input type="text" class="myset_input" placeholder="補助材料費" /></td>
-          <td><input type="text" class="myset_input" placeholder="外注加工費" /></td>
-          <td><input type="text" class="myset_input" placeholder="直接労務費" /></td>
+          <td>
+            <input type="text" class="myset_input" placeholder="内外作" />
+          </td>
+          <td>
+            <input type="text" class="myset_input" placeholder="ステータス" />
+          </td>
+          <td>
+            <input type="text" class="myset_input" placeholder="主要材料費" />
+          </td>
+          <td>
+            <input type="text" class="myset_input" placeholder="補助材料費" />
+          </td>
+          <td>
+            <input type="text" class="myset_input" placeholder="外注加工費" />
+          </td>
+          <td>
+            <input type="text" class="myset_input" placeholder="直接労務費" />
+          </td>
         </tr>
       </table>
     </div>
-    <v-select label="製品" v-model="selected" :items="tree" item-title="name" item-value="id"
-      :hint="`${selected.name} ,${selected.id}`" persistent-hint return-object>
+    <v-select
+      label="製品"
+      v-model="selected"
+      :items="tree"
+      item-title="name"
+      item-value="id"
+      :hint="`${selected.name} ,${selected.id}`"
+      persistent-hint
+      return-object
+    >
     </v-select>
     <v-text-field label="追加要素" v-model="add_name"></v-text-field>
     <v-text-field label="追加要素ID" v-model="add_id"></v-text-field>
@@ -207,7 +229,7 @@ onMounted(() => {
     border-bottom-color: black;
   }
 
-  .table { 
+  .table {
     th:nth-child(1) {
       min-width: 200px;
       position: sticky;
@@ -216,20 +238,22 @@ onMounted(() => {
       background-color: gainsboro;
     }
     td:nth-child(1) {
-    background-color: white;
-    max-width: max-content + 30px;
-    min-width: 200px;
-    position: sticky;
-    left: 0;
-    z-index: 1;
+      background-color: white;
+      max-width: max-content + 30px;
+      min-width: 200px;
+      position: sticky;
+      left: 0;
+      z-index: 1;
+      padding-right: 5px;
+      padding-left: 5px;
 
-    border-right-style: solid;
-    border-right-color: black;
-    border-right-width: 1px;
+      border-right-style: solid;
+      border-right-color: black;
+      border-right-width: 1px;
 
-    font-size: 24px;
-    vertical-align: middle;
-  }
+      font-size: 24px;
+      vertical-align: middle;
+    }
   }
 }
 

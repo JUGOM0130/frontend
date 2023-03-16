@@ -8,9 +8,9 @@ const routes = [{
         name: 'tree',
         component: () => import('@/pages/tree/TreeRoot.vue')
     }, {
-        path: '/create',
+        path: '/root_select',
         name: 'treecreate',
-        component: () => import('@/pages/tree/TreeRootCreate.vue')
+        component: () => import('@/pages/tree/TreeRootSelect.vue')
     }, {
         path: '/tree_create',
         name: 'tree_create',
