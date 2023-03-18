@@ -121,7 +121,7 @@ onMounted(() => {
     <div class="table_wrappar">
       <table class="table">
         <tr>
-          <th>部品名</th>
+          <th>コード</th>
           <th>名称</th>
           <th>製品名称</th>
           <th>版数</th>
@@ -199,9 +199,7 @@ onMounted(() => {
 
 .myset_input {
   width: auto;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: gray;
+
   margin-left: 2.5px;
   margin-right: 2.5px;
   margin-top: 2.5px;
@@ -238,7 +236,6 @@ onMounted(() => {
       background-color: gainsboro;
     }
     td:nth-child(1) {
-      background-color: white;
       max-width: max-content + 30px;
       min-width: 200px;
       position: sticky;
@@ -251,8 +248,16 @@ onMounted(() => {
       border-right-color: black;
       border-right-width: 1px;
 
+      background-color: gainsboro;
+
       font-size: 24px;
       vertical-align: middle;
+    }
+    tr:nth-child(2n) {
+      background-color: aquamarine;
+      td {
+        background-color: aquamarine;
+      }
     }
   }
 }
